@@ -19,33 +19,24 @@ const LoginUser = () => {
             password: password,
         };
 
-        const url = 'https://fitnesso-app-new.herokuapp.com/person/login';
-        // const homeurl = "https://fitnesso-app-new.herokuapp.com/";
+        // const url = 'https://fitnesso-app-new.herokuapp.com/person/login';
 
-        // const url = 'http://localhost:9067/person/login';
+        const url = 'http://localhost:9067/person/login';
         const homeurl = "http://localhost:3000/";
 
-
-
-
-        // https://fitnesso-app-new.herokuapp.com/articles/blogposts/
         try {
-            localStorage.setItem("username", reqBody.username)
             const loginResponse = await axios.post(url, reqBody);
             localStorage.removeItem("token")
-            localStorage.setItem("token", loginResponse.data.token)
-            console.log((loginResponse.data));
+            // console.log((loginResponse.data));
 
             localStorage.setItem("token", loginResponse.data.token);
             localStorage.setItem("role", loginResponse.data.role);
-            console.log(localStorage.getItem(loginResponse.data.token))
-            console.log(localStorage.getItem(loginResponse.data.role))
-        
+            localStorage.setItem("username", loginResponse.data.userInfo.userName);
+
             window.location.replace(homeurl)
 
         } catch (e) {
-            console.log("Incorrect username or password!");
-            // console.log(e);
+            console.log(e);
             alert("Incorrect username or password!");
             setPassword(""); setUsername("");
             return navigate("/login");

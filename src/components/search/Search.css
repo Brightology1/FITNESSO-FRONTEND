@@ -61,8 +61,6 @@
   position: absolute;
 }
 
-/* linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), */
-
 .search__image{
   width: 100%;
 }
@@ -72,9 +70,7 @@
   /* margin:auto; */
   /* max-width: 200px; */
 }
-.search__name{
-  /* background:green; */
-}
+
 .search__price{
   /* background:blue; */
   color: #50BABA;
