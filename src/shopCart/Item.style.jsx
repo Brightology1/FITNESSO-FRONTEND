@@ -27,8 +27,14 @@ export const Wrapper = styled.div`
  .prod_desc, .prod_title, .prod_category, .prod_price{
      margin-bottom: 7px;
  }
+
+ .prod_desc {
+   line-height: 1.5em;
+   height: 3em;       /* height is 2x line-height, so two lines will display */
+   overflow: hidden;  /* prevents extra lines from being visible */
+}
  .prod_category, .prod_desc{
-    text-transform: capitalize;
+    text-transform: capitalise;
     font-weight: normal;
     font-size: 13px;
  }
