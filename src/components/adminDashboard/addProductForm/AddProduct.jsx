@@ -57,7 +57,10 @@ const AddProduct = () => {
     try {
         const token = localStorage.getItem("token");
         
-        const response = await axios.post(url, reqBody);
+        const response = await axios.post(url, reqBody, {
+          headers: { Authorization: `Bearer ${token}` },
+          
+        });
         const res = response.data;
 
         console.log(res)

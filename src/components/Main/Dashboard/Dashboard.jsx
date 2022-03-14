@@ -25,9 +25,6 @@ const Dashboard = () => {
     try {
       const personInfoResponse = await axios.get(url, {
         headers: { Authorization: `Bearer ${token}` },
-        params: {
-          username: `${localStorage.getItem("username")}`,
-        },
       });
       setPeopleData(personInfoResponse.data);
       setSuccessful(false);
@@ -39,9 +36,9 @@ const Dashboard = () => {
       );
       setIsLoggedIn(true);
     } catch (e) {
-      localStorage.clear();
-      navigate("/");
-      console.log("User does not exist!");
+      // localStorage.clear();
+      // navigate("/");
+      // console.log("User does not exist!");
     }
   };
 
