@@ -9,6 +9,7 @@ import AddProduct from './addProductForm/AddProduct';
 import ViewAllUsersRow from './viewAllUsers/ViewAllUsersRow';
 import { ViewAllUsersData } from './viewAllUsers/ViewAllUsersData';
 import { Outlet } from 'react-router-dom';
+import logOut from '../Login/logout';
 
 const AdminDashboard = () => {
     
@@ -32,11 +33,7 @@ const AdminDashboard = () => {
             <li><i className="fa fa-user"></i><a href="/userdashboard">My Details</a></li>
             <li><i className="fas fa-dumbbell"></i><a href="/admindashboard/view-products">Product</a></li>
             <li><i className="fas fa-power-off"></i><a href="#"
-            onClick={() => {
-                localStorage.clear();
-                localStorage.removeItem("token")
-                window.location.replace(homeurl);
-              }}>LOG OUT</a></li>
+            onClick={logOut}>LOG OUT</a></li>
     </div>
 </section>
 
