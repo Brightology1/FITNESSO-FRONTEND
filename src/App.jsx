@@ -28,6 +28,7 @@ import AddProduct from "./components/adminDashboard/addProductForm/AddProduct";
 import ProductsList from "./components/adminDashboard/productRow/ProductsList";
 import Signup from "./components/Signup/Signup";
 import CreateAddress from "./components/CreateAddress/CreateAddress";
+import ThankYouPage from "./components/Thankyou/ThankYouPage";
 
 function App() {
   return (
@@ -77,6 +78,7 @@ function App() {
               <Route path="/admindashboard/view-products" element={<ProductsList/>}/>
               <Route path="/admindashboard/edit-admin-pass" element={<UserPassword/>}/>
             </Route>
+              <Route exact path="/thank-you-page" element={<ThankYouPage/>}/>
           </Routes>
         </Router>
       </div>
