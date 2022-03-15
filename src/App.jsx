@@ -36,9 +36,12 @@ import UsersList from "./components/adminDashboard/viewAllUsers/UsersList";
 import AddProduct from "./components/adminDashboard/addProductForm/AddProduct";
 import ProductsList from "./components/adminDashboard/productRow/ProductsList";
 import CreateAddress from "./components/CreateAddress/CreateAddress";
+
+import ThankYouPage from "./components/Thankyou/ThankYouPage";
 import Youtube from "./components/YoutubePlayer";
 import Youtube2 from "./components/YoutubePlayer/index1";
 import Youtube3 from "./components/YoutubePlayer/index2";
+
 
 
 function App() {
@@ -103,6 +106,7 @@ function App() {
               <Route path="/admindashboard/view-products" element={<ProductsList/>}/>
               <Route path="/admindashboard/edit-admin-pass" element={<UserPassword/>}/>
             </Route>
+              <Route exact path="/thank-you-page" element={<ThankYouPage/>}/>
           </Routes>
         </Router>
       </div>
