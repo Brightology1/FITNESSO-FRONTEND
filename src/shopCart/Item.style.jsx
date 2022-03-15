@@ -29,9 +29,14 @@ export const Wrapper = styled.div`
  }
 
  .prod_desc {
+   text-transform: lowercase;
    line-height: 1.5em;
    height: 3em;       /* height is 2x line-height, so two lines will display */
-   overflow: hidden;  /* prevents extra lines from being visible */
+   overflow: auto;  /* prevents extra lines from being visible */
+}
+.prod_desc::first-letter{
+   text-transform: uppercase;
+   color: red;
 }
  .prod_category, .prod_desc{
     text-transform: capitalise;
@@ -40,7 +45,6 @@ export const Wrapper = styled.div`
  }
 
  img {
-    margin: 10px;
     height: 50%;
     width: 100%;
     object-fit: cover;

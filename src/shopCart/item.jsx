@@ -10,7 +10,8 @@ const Item = ({ item, handleAddToCart }) => (
    <div>
      <h3 className="prod_title">{item.productName}</h3>
      <h3 className="prod_category">Category: {item.category}</h3>
-     <p className="prod_desc">Description: {item.description} ...</p>
+     <h4>Description: </h4>
+     <p className="prod_desc">{item.description}</p>
      <h3 className="prod_price">${item.price}</h3>
    <Button onClick={()=> handleAddToCart(item)} className="prod_btn">Add to cart</Button>
    </div>
