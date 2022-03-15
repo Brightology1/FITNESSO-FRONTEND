@@ -15,7 +15,7 @@ import UserInfo from "./components/Main/Dashboard/EditForms/UserInfo";
 import UserPassword from "./components/Main/Dashboard/EditForms/UserPassword";
 import ProductDashboard from "./components/Main/ProductCategory/ProductDashboard";
 import AllProduct from "./components/Main/ProductCategory/AllProducts";
-import Shop from './components/ShopPage/ShopPage'
+import Shop from "./components/ShopPage/ShopPage";
 import CartPage from "./components/Cart/CartPage/CartPage";
 import SearchProductFilter from "./components/search/SearchProductFilter";
 import Contact from "./components/Contact/pages/Contact.jsx"
