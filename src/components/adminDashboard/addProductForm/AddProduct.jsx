@@ -57,7 +57,10 @@ const AddProduct = () => {
     try {
         const token = localStorage.getItem("token");
         
-        const response = await axios.post(url, reqBody);
+        const response = await axios.post(url, reqBody, {
+          headers: { Authorization: `Bearer ${token}` },
+          
+        });
         const res = response.data;
 
         console.log(res)
@@ -158,7 +161,7 @@ const AddProduct = () => {
               name="quantity"
               className="add-product-input"
               type="text"
-              placeholder="Quantity / Trainers"
+              placeholder="Quantity / Hours_PER_Day"
               value={quantity}
               onChange={(event) => setQuantity(event.target.value)}
             />
@@ -168,7 +171,7 @@ const AddProduct = () => {
               name="stock"
               className="add-product-input"
               type="text"
-              placeholder="Remaining Stock / Available Trainers"
+              placeholder="Remaining Stock / Sessions_PER_Week"
               value={stock}
               onChange={(event) => setStock(event.target.value)}
             />
@@ -182,7 +185,7 @@ const AddProduct = () => {
                 PRODUCT
               </option>
               <option className="select-box1" value="SERVICE">
-                SERVICES
+                SERVICE
               </option>
             </select>
           </div>
