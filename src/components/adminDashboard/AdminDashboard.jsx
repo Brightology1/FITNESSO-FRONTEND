@@ -11,6 +11,7 @@ import { ViewAllUsersData } from './viewAllUsers/ViewAllUsersData';
 import { Outlet } from 'react-router-dom';
 
 const AdminDashboard = () => {
+    
   return (
     <div>
          
@@ -19,7 +20,7 @@ const AdminDashboard = () => {
 
 <section id="menu">
     <div className="admin-dashboard-logo">
-        <img src="https://uploads-ssl.webflow.com/5e80894f63c557e083ed96b4/5e808d31a7eca1775993ae82_Black.svg" alt=""/>
+        <img src="https://uploads-ssl.webflow.com/5e80894f63c557e083ed96b4/5e808d31a7eca1775993ae82_Black.svg" alt="" href="/"/>
     </div>
 
     <div className="admin-dashboard-items"> 
@@ -27,9 +28,15 @@ const AdminDashboard = () => {
             <li><i className="fab fa-uikit"></i><a href="/admindashboard">Orders</a></li>
             <li><i className="fas fa-users"></i><a href="/admindashboard/view-users">Users</a></li>
             <li><i className="fas fa-edit"></i><a href="/admindashboard/add-products">Add Product </a></li>
-            <li><i className="fa fa-user"></i><a href="/">My Details</a></li>
+            <li><i className="fas fa-edit"></i><a href="/admindashboard/add-services">Add Post </a></li>
+            <li><i className="fa fa-user"></i><a href="/userdashboard">My Details</a></li>
             <li><i className="fas fa-dumbbell"></i><a href="/admindashboard/view-products">Product</a></li>
-            <li><i className="fas fa-chart-line"></i><a href="#">menu options</a></li>
+            <li><i className="fas fa-power-off"></i><a href="#"
+            onClick={() => {
+                localStorage.clear();
+                localStorage.removeItem("token")
+                window.location.replace(homeurl);
+              }}>LOG OUT</a></li>
     </div>
 </section>
 

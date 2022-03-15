@@ -48,6 +48,7 @@ export default function blogArticle() {
                     <div className="blogArticle_writeup">
                         <h5 className='writeup'>
                             The 10 best exercises to do in your park
+                            
                         </h5>
                     </div>
                     <a style={{display:'flex',alignItems:'center',fontWeight:'lighter'}} href=""> <ChevronRightIcon/> Read more</a>

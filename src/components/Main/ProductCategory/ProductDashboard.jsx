@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router'
 import FixedImage from '../FixedImage/FixedImage'
+import Footer from '../Footer/Footer'
 import CategoryBar from './CategoryBar'
 
 const ProductDashboard = () => {
@@ -8,6 +9,7 @@ const ProductDashboard = () => {
         <div>
             <CategoryBar/>
             <Outlet/>
+            <Footer/>
         </div>
     )
 }

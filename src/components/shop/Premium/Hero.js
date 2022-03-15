@@ -9,9 +9,6 @@ const Hero = () => {
     // <Top>
     <div className="fg1">
       <section>
-
-
-
         <div className = "bgImg">
           <div style={{ color: "#fff", fontSize: "70px" }} className="bg2">
             <div className="premium"><h4>
@@ -32,15 +29,12 @@ const Hero = () => {
       </section>
 
       <section>
-        <div className="category">
-          <div className="categ">Categories</div>
           <div className="feg">
           
-            <button className="e" onClick = {() => window.location.href='/product' }>ALL</button>
-            <button className="f">NUTRITION</button>
-            <button className="g">TRAINING</button>
+            <button className="e" onClick = {() => window.location.href='/product' }>VIEW PRODUCTS</button>
+            {/* <button className="f">NUTRITION</button>
+            <button className="g">TRAINING</button> */}
           </div>
-        </div>
       </section>
     </div>
   );

@@ -1,17 +1,22 @@
 import React, { useCallback, useEffect, useState } from "react";
 // import "./Favorites.css";
 import ReactPaginate from "react-paginate";
+import { FavoriteButton } from "../../services/FavoriteButton";
+import Paginations from "../../services/Paginations";
+import ProductModel from "../../shop/shopProduct/ProductModel";
 
 const AllProduct = () => {
-    const [products, setProducts] = useState([]);
-    const [isLoading, setIsLoaing] = useState(false);
-    const [offset, setOffset] = useState(0);
-    const [total, setTotal] = useState(0);
-    const [pageCount, setPageCount] = useState(0);
-    const [pageLimit] = useState(5);
-    const [pageNumber, setPageNumber] = useState(1);
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoaing] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [offset, setOffset] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
+  const [pageLimit] = useState(10);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [total, setTotal] = useState(0);
 
-    const productUrl = "http://localhost:9067/product/viewproducts/"
+
+    const productUrl = "https://fitnesso-app-new.herokuapp.com/product/viewproducts/"
     console.log(pageNumber);
 
   
@@ -19,7 +24,7 @@ const AllProduct = () => {
         const fetchData = async () => {
             const response = await fetch(productUrl + `${pageNumber}`)
             const faveData = await response.json();
-            console.log(faveData)
+            console.log("Products from the DB : " + faveData)
             setTotal(faveData.totalElements);
             setPageCount(Math.ceil(faveData.totalPages));
             setProducts(faveData.content)
@@ -28,67 +33,74 @@ const AllProduct = () => {
       fetchData();
     }, [pageNumber, pageLimit]);
   
-    const handlePageClick = (e) => {
-      const selectedPage = e.selected; 
+  const onPageChanged = (event, page) => {
+    event.preventDefault();
+    setCurrentPage(page);
+  };
 
-      console.log(selectedPage)
-      setPageNumber(pageCount != selectedPage +1 ? selectedPage + 1 : selectedPage) ;
-      console.log(pageNumber);
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(productUrl);
+      const productData = await response.json();
+      console.log(productData);
+      setTotal(productData.length);
+      setPageCount(Math.ceil(total/pageLimit));
+      setProducts(productData.slice(offset, offset+pageLimit));
+      setIsLoaing(true);
+    };
+    fetchData();
+  }, [offset]);
+
+  // const [currentPage, setCurrentPage] = useState(1);
+  let NUM_OF_RECORDS = products.length;
+  let LIMIT = 10;
+
+  const handlePageClick = (e) => {
+     setCurrentPage(e.selected);
+    setOffset((currentPage + 1)*perPage)
+  }
+  return (
+    <div>
+      <div className="fave-container">
+        <div></div>
+        <header className="db-component-header">
+          <h1>All Products ({total}) </h1>
+        </header>
+        {isLoading ? (
+          <div className="productSection">
+            {products.map((item) => (
+              <div className="productContainer" key={item.id}>
   
-    return (
-      <div>
-        <div className="fave-container">
-          <div></div>
-          <header className="db-component-header">
-            <h1>All Products ({total}) </h1>
-          </header>
-          {isLoading ? (
-            <div className="faves-container">
-              {products.map((data, key) => {
-                return (
-                  <div className="fave-holder">
-                    <div className="fave-details" key={key}>
-                      
-                      <img src={`${data.image}`} alt="Image loading" />
-                      <div className="fave-info">
-                        <h5>Product Name: {`${data.productName}`}</h5>
-                        <p>Category: {`${data.category}`.toUpperCase()}</p>
-                        <p>Description: {`${data.description}`}</p>
-                        <p>Product Cost: {`$${data.price}`}</p>
-                        {/* <p>Description: {`${data.description}`}</p> */}
-                      </div>
-                      <div className="fave-to-cart">
-                        <div className="fave-btn">
-                          <a href="#">To Cart</a>
-                        </div>
-                        <div className="btn-rmv-fave">
-                          <i className="fa-thin fa-trash-can"></i>
-                          <a href="#">Remove</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div>Pending...</div>
-          )}
-        </div>
-        <ReactPaginate
-                previousLabel={"prev"}
-                nextLabel={"next"}
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={handlePageClick}
-                containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
-                activeClassName={"active"}/>
+                <ProductModel
+                  backgroundImage={item.image}
+                  time={item.duration_in_days}
+                  cost={item.price}
+                  product={item.productName}
+                  id={item.id}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div>Pending...</div>
+        )}
       </div>
-    );
-}
+      <div className="pagination-wrapper">
+        <ReactPaginate
+          previousLabel={"prev"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+        />
+      </div>
+    </div>
+  );
+};
 export default AllProduct;

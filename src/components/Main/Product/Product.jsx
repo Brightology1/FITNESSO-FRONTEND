@@ -40,7 +40,7 @@ export default function Product() {
                </h5>
             </div>
             <div className="product_train">
-            <a style={{display:'flex',alignItems:'center',fontWeight:'lighter'}} href=""> <ChevronRightIcon/>Train now</a>
+            <a style={{display:'flex',alignItems:'center',fontWeight:'lighter'}} href="/v1"> <ChevronRightIcon/>Train now</a>
             </div>
         </div>
 
@@ -62,7 +62,7 @@ export default function Product() {
                </h5>
             </div>
             <div className="product_train">
-            <a style={{display:'flex',alignItems:'center',fontWeight:'lighter'}} href=""> <ChevronRightIcon/> Train now</a>
+            <a style={{display:'flex',alignItems:'center',fontWeight:'lighter'}} href="/v2"> <ChevronRightIcon/> Train now</a>
             </div>
         </div>
 
@@ -84,7 +84,7 @@ export default function Product() {
                </h5>
             </div>
             <div className="product_train">
-            <a style={{display:'flex',alignItems:'center',fontWeight:'lighter'}} href=""> <ChevronRightIcon/> Train now</a>
+            <a style={{display:'flex',alignItems:'center',fontWeight:'lighter'}} href="/v3"> <ChevronRightIcon/> Train now</a>
             </div>
             </div>
             </div>

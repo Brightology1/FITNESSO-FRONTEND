@@ -25,7 +25,7 @@ function Text() {
           <p>7 Asajon way, Sangotedo, Lagos State, Nigeria</p>
         </div>
         <div class='information'>
-          {/* <img src={email} class='icon' alt='' /> */}
+      
           <img src={email} class='icon' alt='' />
           <p
             className='hand'
@@ -33,7 +33,6 @@ function Text() {
           >
             contact@fitnesso.com
           </p>
-          {/* <p>contact@fitnesso.com</p> */}
         </div>
         <div class='information'>
           <img src={phone} class='icon' alt='' />
@@ -43,7 +42,6 @@ function Text() {
           >
             +234 567 893 5456
           </p>
-          {/* <p>+234 567 893 5456</p> */}
         </div>
       </div>
 

@@ -39,6 +39,11 @@ img{
     font-weight: 600;
     font-size: 18px;
 }
+
+.center {
+    display: flex;
+    align-items: center;
+}
 ul li{
     list-style: none;
     margin-left: 10px;

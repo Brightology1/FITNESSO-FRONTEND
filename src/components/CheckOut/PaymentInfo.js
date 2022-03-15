@@ -3,7 +3,7 @@ import "./PaymentInfo.css";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 
-const PaymentInfo = ({setCardInfo, cardInfo}) => {
+const PaymentInfo = ({setCardInfo, cardInfo, setIssuer, issuer}) => {
   const [cvc, setCvc] = useState("");
   const [expiry, setExpiry] = useState("");
   const [focus, setFocus] = useState("");
@@ -21,6 +21,10 @@ const PaymentInfo = ({setCardInfo, cardInfo}) => {
     setFocus({ focus: e.target.name });
   };
 
+  const handleCallback = ({ issuer }, isValid) => {
+      setIssuer(issuer);
+  };
+
   return (
     <div>
       <div className="PaymentInfo-container">
@@ -31,11 +35,12 @@ const PaymentInfo = ({setCardInfo, cardInfo}) => {
         <div className="PaymentInfo-row PaymentInfo-clean">
           <div className="PaymentInfo-card-adjust">
             <Cards
-              cvc={cardInfo.cvcNumber || ''}
+              cvc={cardInfo.cvvNumber || ''}
               expiry={cardInfo.expiringDate || ''}
               focused={cardInfo.focus || ''}
               name={cardInfo.name || ''}
               number={cardInfo.cardNumber || ''}
+              callback={handleCallback}
             />
           </div>
           <div>
@@ -61,12 +66,13 @@ const PaymentInfo = ({setCardInfo, cardInfo}) => {
                 onFocus={(e) => setFocus(e.target.name)}
               />
             </div>
+            <input type="hidden" name="issuer" value={issuer || ''} />
             <div className="PaymentInfo-info-input PaymentInfo-title-content PaymentInfo-small-input PaymentInfo-input-container">
               <label>Card CVC* </label>
               <input
                 type="password"
-                name="cvcNumber"
-                value={cardInfo.cvcNumber || ''}
+                name="cvvNumber"
+                value={cardInfo.cvvNumber || ''}
                 onChange={handleInputChange}
                 onFocus={(e) => setFocus(e.target.name)}
               />

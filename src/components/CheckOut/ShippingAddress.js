@@ -2,15 +2,7 @@ import React, {useState} from "react";
 import "./ShippingAddress.css";
 
 const ShippingAddress = ({addressName, setShipping, shipping, onChange }) => {
-    // const [shippingIn, setShippingIn] = useState({
-    //     fullName: "",
-    //     streetAddress: "",
-    //     city: "",
-    //     state: "",
-    //     zipCode: "",
-    //     country: "",
-    //   });
-
+    
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setShipping({
@@ -27,7 +19,7 @@ const ShippingAddress = ({addressName, setShipping, shipping, onChange }) => {
         </div>
         <div className="ShippingAddress-info-input ShippingAddress-title-content ShippingAddress-input-container">
           <label>Full Name* </label>
-          <input className="ShippingAddress-big-input" value={shipping.fullName || ''}  onChange={handleInputChange} type="text" name="fullName"/>
+          <input className="ShippingAddress-big-input" value={shipping.userName || ''}  onChange={handleInputChange} type="text" name="userName"/>
         </div>
         <div className="ShippingAddress-info-input ShippingAddress-title-content ShippingAddress-input-container">
           <label>Street Address* </label>

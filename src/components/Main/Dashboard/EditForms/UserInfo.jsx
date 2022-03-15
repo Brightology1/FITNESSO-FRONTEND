@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom';
 const UserInfo = () => {
   const userInfo = JSON.parse(localStorage.getItem("peopleData"));
   const token = localStorage.getItem("token");
+  console.log(userInfo);
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState(userInfo.firstName);
@@ -26,7 +27,7 @@ const UserInfo = () => {
       };
 
       
-      const url = `http://localhost:9067/person/profile/edit/personinfo/`;
+      const url = `https://fitnesso-app-new.herokuapp.com/person/profile/edit/personinfo/`;
 
       try {
           await axios.put(url, editRequestBody, {
@@ -114,14 +115,5 @@ const UserInfo = () => {
     </div>
   );
 };
-
-/* 
-"dateOfBirth": "2022-03-05T13:34:25.639Z",
-  "firstName": "string",
-  "gender": "string",
-  "lastName": "string",
-  "phoneNumber": "string",
-  "userName": "string"
-*/
 
 export default UserInfo;

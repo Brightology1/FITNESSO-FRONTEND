@@ -1,37 +1,54 @@
 import React, { useState } from 'react';
 import {loginUser} from '../services/userAuth';
-import './Login.css';
+import "./Login.css";
 import axios from "axios";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const LoginUser = () => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [bearer, setBearer] = useState(false);
+    const navigate = useNavigate();
 
-    
+
     async function sendLoginRequest(e) {
         e.preventDefault();
         const reqBody = {
             username: username,
             password: password,
         };
-        const url = 'http://localhost:9067/person/login';
+
+        const url = 'https://fitnesso-app-new.herokuapp.com/person/login';
+        // const homeurl = "https://fitnesso-app-new.herokuapp.com/";
+
+        // const url = 'http://localhost:9067/person/login';
         const homeurl = "http://localhost:3000/";
 
+
+
+
+        // https://fitnesso-app-new.herokuapp.com/articles/blogposts/
         try {
             localStorage.setItem("username", reqBody.username)
             const loginResponse = await axios.post(url, reqBody);
             localStorage.removeItem("token")
             localStorage.setItem("token", loginResponse.data.token)
+            console.log((loginResponse.data));
+
+            localStorage.setItem("token", loginResponse.data.token);
+            localStorage.setItem("role", loginResponse.data.role);
             console.log(localStorage.getItem(loginResponse.data.token))
-          
+            console.log(localStorage.getItem(loginResponse.data.role))
+        
             window.location.replace(homeurl)
 
         } catch (e) {
-            // console.log("Incorrect username or password!");
-            console.log(e)
+            console.log("Incorrect username or password!");
+            // console.log(e);
+            alert("Incorrect username or password!");
+            setPassword(""); setUsername("");
+            return navigate("/login");
         }
 
     }
@@ -58,6 +75,4 @@ const LoginUser = () => {
         </div>
     );
 };
-
-// onSubmit={() => sendLoginRequest(setDisabledButton)
 export default LoginUser;

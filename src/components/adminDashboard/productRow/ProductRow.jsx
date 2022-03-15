@@ -1,8 +1,18 @@
+import axios from 'axios'
 import React from 'react'
 // import "./AdminDashboard.css";
 
 
 const ProductRow = ({id, image, price, name, description, category,date}) => {
+    const url = `https://fitnesso-app-new.herokuapp.com/product/delete/${id}`;
+    const deleteItem = async () => {
+        const response = await axios.delete(url, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = response.data;
+        alert("Item has been deleted!");
+    }
   return (
     <>
           <tr>
@@ -33,7 +43,7 @@ const ProductRow = ({id, image, price, name, description, category,date}) => {
                         <a href="#">
                             <i className="fa fa-pencil"></i>
                         </a> {"   "}
-                        <a href="#">
+                        <a href="#" onClick={(deleteItem)}>
                             <i className="fa fa-trash"></i>
                             
                             </a>

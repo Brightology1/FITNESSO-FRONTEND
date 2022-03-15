@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./CheckingOut.css";
 import NavBar from "../Main/Navbar/Navbar";
 import Footer from "../Main/Footer/Footer";
@@ -20,19 +20,41 @@ import OrderSummary from "./OrderSummary";
 import OrderConfirmation from "./orderStuff/OrderConfirmation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faMoneyBillWave } from "@fortawesome/free-solid-svg-icons";
+import CartContext from "../../context/cart-context";
 
 function CheckingOut() {
+  const loginState = localStorage.getItem("token");
     const navigate = useNavigate();
+    const cartCxt = useContext(CartContext);
+
+  useEffect(() => {
+    if(loginState === null){
+      navigate("/");
+      alert("Please Login");
+    }
+    else if(cartCxt.items.length === 0){
+      alert("Cart Items is empty");
+      navigate("/cart");
+    }
+  }, [])
   const [customerInfo, setCustomerInfo] = useState({ email: "" });
   const [discount, setDiscount] = useState({});
   const [shipMethod, setShipMethod] = useState({});
   const [cardInfo, setCardInfo] = useState({});
   const [shipping, setShipping] = useState({});
   const [billing, setBilling] = useState({});
-  const API_BASE_URL = "fitnesso-app-new.herokuapp.com";
-//   const [isFilled, setIsFilled] = useState(false);
+  const [issuer, setIssuer] = useState("");
+  const API_BASE_URL = "https://fitnesso-app-new.herokuapp.com";
 
+  const itemsPrice = cartCxt.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+  const totalPrice = itemsPrice + 50;
   const [allData, setAllData] = useState({});
+
+  const summaryOrder = {
+    subTotal: itemsPrice,
+    flatRate: 50,
+    total: totalPrice
+  }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -46,11 +68,12 @@ function CheckingOut() {
     }
     allData.email= customerInfo.email;
     allData.shippingAddress = shipping;
-    allData.shippingMethod = shipMethod;
+    allData.shippingMethod = shipMethod.shipWay;
     allData.paymentRequest = cardInfo;
     allData.billingAddress = billing;
     allData.discountRequest = discount;
-    allData.shoppingCartUniqueId = "yet";
+    allData.shoppingCartUniqueId = cartCxt.items[0].uniqueCartId;
+    allData.orderSummary = summaryOrder;
     console.log(allData);
     navigate("/checkout/order-confirmation");
   };
@@ -67,10 +90,10 @@ function CheckingOut() {
         body: JSON.stringify(makeCheckOut),
       });
     const data = await res.json();
+    console.log(res);
     console.log(data);
     if(data.message === "Complete your Payment") {
       window.location.href = data.link;
-        // navigate("/home")
     }
     else if(data.status === 403){
         navigate("/login")
@@ -90,7 +113,7 @@ function CheckingOut() {
           <Routes>
             <Route
               path="order-confirmation"
-              element={customerInfo.email === '' ? <Navigate to="/checkout" /> : <OrderConfirmation allData={allData} />}
+              element={customerInfo.email === '' ? <Navigate to="/checkout" /> : <OrderConfirmation allData={allData} issuer={issuer} />}
             />
             <Route
               path="/"
@@ -106,7 +129,7 @@ function CheckingOut() {
                     addressName={"Shipping Address"}
                   />
                   <ShippingMethod setShipMethod={setShipMethod} />
-                  <PaymentInfo setCardInfo={setCardInfo} cardInfo={cardInfo} />
+                  <PaymentInfo setCardInfo={setCardInfo} cardInfo={cardInfo} setIssuer={setIssuer} issuer={issuer} />
                   <BillingAddress
                     shipping={billing}
                     setShipping={setBilling}
@@ -125,7 +148,7 @@ function CheckingOut() {
         <div className="CheckingOut-right-order">
           <ItemsOrder />
         </div>
-        <OrderSummary />
+        <OrderSummary summaryOrder={summaryOrder} />
         <Routes>
         <Route
               path="order-confirmation"

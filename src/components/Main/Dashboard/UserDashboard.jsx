@@ -15,11 +15,13 @@ const UsersDashboard = () => {
     setSideBarResponsive(false);
   };
 
-  // const logOut = (e) => {
-  //   e.preventDefault();
-  //   localStorage.clear()
-  //       window.location.replace(homeurl)
-  // }
+  const logOut = (e) => {
+    e.preventDefault();
+    if (confirm("Log out?")) {
+      localStorage.clear()
+      window.location.replace(homeurl)
+    }
+  }
 
   return (
     <>
@@ -66,14 +68,14 @@ const UsersDashboard = () => {
               ></i>
             </div>
             <div className="users__dashboard__sidebar__menu">
-              <div className="users__dashboard__sidebar__link active_menu_link">
+              <div className="users__dashboard__sidebar__link">
                 <i className="fa fa-home"></i>
                 <a href="/userdashboard">My Dashboard</a>
               </div>
               <h2>Account</h2>
               <div className="users__dashboard__sidebar__link">
                 <i className="fa fa-user" aria-hidden="true"></i>
-                <a href="#">Edit Account Info</a>
+                <a href="/userdashboard/edit-user-info">Edit Account Info</a>
               </div>
               <div className="users__dashboard__sidebar__link">
                 <i className="fa fa-heart"></i>
@@ -96,11 +98,7 @@ const UsersDashboard = () => {
                 <i className="fa fa-power-off"></i>
                 <a
                   href="#"
-                  onClick={() => {
-                    localStorage.clear();
-                    localStorage.removeItem("token")
-                    window.location.replace(homeurl);
-                  }}
+                  onClick={logOut}
                 >
                   Log out
                 </a>
@@ -109,7 +107,6 @@ const UsersDashboard = () => {
           </div>
           <div className="db-main-main">
             <main>
-              {/* <Dashboard/> */}
               <Outlet />
             </main>
           </div>

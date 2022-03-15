@@ -1,11 +1,20 @@
 import React from "react";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { useNavigate } from "react-router-dom";
+import { FavoriteButton } from "../../services/FavoriteButton";
 
 
 const ProductModel = ({ backgroundImage,
     time,
     cost,
-    product, }) => {
+    product, id}) => {
+      const navigate = useNavigate();
+
+      const viewItem = () => {
+        console.log("This is id in Model: " + id);
+        localStorage.setItem("productId", id);
+        navigate("/product/item");
+      }
   return (
     
     <div className="Products">
@@ -17,7 +26,7 @@ const ProductModel = ({ backgroundImage,
       <div className="product_titleContainer">
         <div className="product_titleWrapper">
           
-          <span className="colour-time">{time} </span>
+        <FavoriteButton itemId={id} />
           <span className="colour-free"> {cost}</span>
         </div>
 
@@ -26,7 +35,7 @@ const ProductModel = ({ backgroundImage,
       </div>
 
       <div className="productTrain">
-        <a href="#">View</a>
+        <a href='#' onClick={viewItem}>View</a>
       </div>
       </div>
 

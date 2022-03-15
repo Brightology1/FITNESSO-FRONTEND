@@ -21,7 +21,7 @@ const UserPassword = () => {
           userName: userName,
       };
 
-      const url = `http://localhost:9067/person/profile/edit/password`;
+      const url = `https://fitnesso-app-new.herokuapp.com/person/profile/edit/password`;
 
       try {
           const response = await axios.put(url, updatePasswordReq, {
@@ -29,7 +29,6 @@ const UserPassword = () => {
           })
 
           alert(`${response.data.message}`);
-          console.log(response.data.message);
           if(response.data.message !== `password successfully changed`) {
             setCurrentPassword("");
             setNewPassword("");
@@ -52,7 +51,7 @@ const UserPassword = () => {
               type="password"
               placeholder="Enter Current Password"
               align="center"
-              className="curr-pas"
+              className="username"
               value={currentPassword}
               onChange={(event) => setCurrentPassword(event.target.value)}
             />
@@ -62,7 +61,7 @@ const UserPassword = () => {
               type="password"
               align="center"
               placeholder="Enter New Password"
-              className="curr-pas"
+              className="username"
               value={newPassword}
               onChange={(event) => setNewPassword(event.target.value)}
             />
@@ -72,7 +71,7 @@ const UserPassword = () => {
               type="password"
               placeholder="Confirm New Password"
               align="center"
-              className="curr-pas"
+              className="username"
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
             />

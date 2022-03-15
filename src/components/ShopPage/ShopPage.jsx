@@ -11,7 +11,7 @@ function Shop(){
   return (
     <div>
         <Navbar/>
-        <SearchProductFilter />
+        {/* <SearchProductFilter /> */}
         <Hero />
         <ProductCard />
         <Footer/>

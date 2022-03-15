@@ -14,7 +14,7 @@ export const MenuItem = [
     {
         title: "Contact Us",
 
-        url: "http://localhost:3000/contact",
+        url: "contact",
         cName: "nav-links"
     },
 

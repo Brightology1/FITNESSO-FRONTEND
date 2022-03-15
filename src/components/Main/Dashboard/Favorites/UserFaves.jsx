@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./Favorites.css";
 import ReactPaginate from "react-paginate";
+import ProductModel from "../../../shop/shopProduct/ProductModel";
 
 const UserFaves = () => {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ const UserFaves = () => {
 
   useEffect(() => {
       const fetchData = async () => {
-          const response = await fetch("https://fakestoreapi.com/products")
+          const response = await fetch("https://fitnesso-app-new.herokuapp.com/products")
           const faveData = await response.json();
           setTotal(faveData.length);
           setPageCount(Math.ceil(faveData.length/pageLimit));
@@ -35,32 +36,19 @@ const UserFaves = () => {
           <h1>My Favourites ({total}) </h1>
         </header>
         {isLoading ? (
-          <div className="faves-container">
-            {products.map((data, key) => {
-              return (
-                <div className="fave-holder">
-                  <div className="fave-details" key={key}>
-                    <img src={`${data.image}`} alt="Image loading" />
-                    <div className="fave-info">
-                      <h5>Product Name: {`${data.title}`}</h5>
-                      <p>Category: {`${data.category}`.toUpperCase()}</p>
-                      <p>Product Cost: {`$${data.price}`}</p>
-                      {/* <p>Description: {`${data.description}`}</p> */}
-                    </div>
-                    <div className="fave-to-cart">
-                      <div className="fave-btn">
-                        <a href="#">To Cart</a>
-                      </div>
-                      <div className="btn-rmv-fave">
-                        <i className="fa-thin fa-trash-can"></i>
-                        <a href="#">Remove</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+           <div className="productSection">
+           {products.map((item) => (
+             <div className="productContainer" key={item.id}>
+               <ProductModel
+                 backgroundImage={item.image}
+                 time={item.duration_in_days}
+                 cost={item.price}
+                 product={item.productName}
+                 id={item.id}
+               />
+             </div>
+           ))}
+         </div>
         ) : (
           <div>Pending...</div>
         )}

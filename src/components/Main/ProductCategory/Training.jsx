@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 // import "./Favorites.css";
 import ReactPaginate from "react-paginate";
+import ProductModel from "../../shop/shopProduct/ProductModel";
 
 const Training = () => {
     const [products, setProducts] = useState([]);
@@ -11,8 +12,9 @@ const Training = () => {
     const [pageLimit] = useState(5);
     const [pageNumber, setPageNumber] = useState(1);
 
-    const serviceUrl = "http://localhost:9067/product/allservices/10/0"
 
+    // TODO: Edit Url to be dynamic
+    const serviceUrl = "https://fitnesso-app-new.herokuapp.com/product/allservices/10/0"
   
     useEffect(() => {
       const fetchData = async () => {
@@ -21,7 +23,7 @@ const Training = () => {
           console.log(faveData)
           setTotal(faveData.totalElements);
           setPageCount(Math.ceil(faveData.totalPages));
-          setProducts(faveData.content)
+          setProducts(faveData)
           setIsLoaing(true);
       }
     fetchData();
@@ -43,34 +45,19 @@ const Training = () => {
           <h1>All Products ({total}) </h1>
         </header>
         {isLoading ? (
-          <div className="faves-container">
-            {products.map((data, key) => {
-              return (
-                <div className="fave-holder">
-                  <div className="fave-details" key={key}>
-                    
-                    <img src={`${data.image}`} alt="Image loading" />
-                    <div className="fave-info">
-                      <h5>Product Name: {`${data.productName}`}</h5>
-                      <p>Category: {`${data.category}`.toUpperCase()}</p>
-                      <p>Description: {`${data.description}`}</p>
-                      <p>Product Cost: {`$${data.price}`}</p>
-                      {/* <p>Description: {`${data.description}`}</p> */}
-                    </div>
-                    <div className="fave-to-cart">
-                      <div className="fave-btn">
-                        <a href="#">To Cart</a>
-                      </div>
-                      <div className="btn-rmv-fave">
-                        <i className="fa-thin fa-trash-can"></i>
-                        <a href="#">Remove</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <div className="productSection">
+          {products.map((item) => (
+            <div className="productContainer" key={item.id}>
+              <ProductModel
+                backgroundImage={item.image}
+                time={item.duration_in_days}
+                cost={item.price}
+                product={item.productName}
+                id={item.id}
+              />
+            </div>
+          ))}
+        </div>
         ) : (
           <div>Pending...</div>
         )}

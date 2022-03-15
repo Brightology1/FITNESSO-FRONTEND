@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./UserDashboard.css";
 import axios from "axios";
 import { useState } from "react";
@@ -11,13 +11,18 @@ const Dashboard = () => {
   const [peopledata, setPeopleData] = useState({});
   const [successful, setSuccessful] = useState(false);
   const [address, setAddress] = useState({});
+  const navigate = useNavigate();
 
   useEffect((e) => {
     getUserInfo(e);
   }, []);
   const getUserInfo = async (e) => {
     setSuccessful(true);
-    const url = "http://localhost:9067/person/profile";
+
+    // const url = "'https://fitnesso-app-new.herokuapp.com/person/profile";
+    const url = `http://localhost:9067/person/profile`;
+
+
     try {
       const personInfoResponse = await axios.get(url, {
         headers: { Authorization: `Bearer ${token}` },
@@ -27,28 +32,24 @@ const Dashboard = () => {
       });
       setPeopleData(personInfoResponse.data);
       setSuccessful(false);
-      // setPeopleData(personInfoResponse.data)
-      // console.table(personInfoResponse);
       console.log(personInfoResponse.data);
       setAddress(personInfoResponse.data.address);
       localStorage.setItem("peopleData", JSON.stringify(personInfoResponse.data));
 
-      // localStorage.setItem("state", personInfoResponse.data.address.state);
-      // DONT FORGET TO delete "state" from localStorage
-      // const details = personInfoResponse.data
     } catch (e) {
+      localStorage.clear();
+      navigate("/");
       console.log("User does not exist!");
     }
   };
 
-  // const personInfo = localStorage.getItem("person_info");
   return (
     <div id={peopledata.id}>
     <div className="users__dashboard__main__title">
       <img src={`${peopledata.image}`} alt={`${peopledata.image}`} />
       <div className="users__dashboard__main__greeting">
         <h1>{peopledata.username}</h1>
-        <p>Welcome to your account dashboard {`${peopledata.firstName} ${peopledata.lastName}`}</p>
+        <p>Welcome {`${peopledata.firstName} ${peopledata.lastName}`}</p>
       </div>
     </div>
     <div className="users__dashboard__charts">
@@ -56,7 +57,7 @@ const Dashboard = () => {
         <div className="users__dashboard__charts__left__title">
           <div>
             <h1>Personal Information</h1>
-            <p>{peopledata.userName}</p>
+            <p>{peopledata.gender}</p>
           </div>
           <i className="fa fa-user" aria-hidden="true"></i>
         </div>
@@ -87,7 +88,7 @@ const Dashboard = () => {
             <p>{address.streetDetail}</p><br></br>
             <p>{address.city}</p>
           </div>
-          <a href="#">
+          <a href="/userdashboard/edit-user-address">
             <i className="fa fa-pencil" aria-hidden="true"></i>
           </a>
         </div>

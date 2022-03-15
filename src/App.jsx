@@ -2,7 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./app.css";
 import HomePage from "../src/HomePage";
-import Login from "../src/components/Login/Login";
+import Login from "../src/components/Login/Login"
+import Signup from "./components/Signup/Signup";
+import BlogPost from './components/Main/BlogPost/BlogPost.js'
+import FullBlogPost from './components/Main/BlogPost/FullBlogPost'
+import Layout from "./components/Layout/Layout"
 import UserDashboard from "./components/Main/Dashboard/UserDashboard";
 import Dashboard from "./components/Main/Dashboard/Dashboard";
 import Orders from "./components/Main/Dashboard/Orders/Orders";
@@ -19,18 +23,29 @@ import Navbar from "./components/Main/Navbar/Navbar"
 import Footer from "./components/Main/Footer/Footer";
 import Nutrition from "./components/Main/ProductCategory/Nutrition";
 import Training from "./components/Main/ProductCategory/Training";
+
+import ViewProduct from "./components/Main/ProductCategory/ViewProduct";
+import UserAddress from "./components/Main/Dashboard/EditForms/UserAddress";
+
 import CheckingOut from "./components/CheckOut/CheckingOut";
 import EmailCheck from "./components/EmailConfirmation/EmailCheck";
+import ShopApp from './shopCart/ShopApp'
 import AdminDashboard from "./components/adminDashboard/AdminDashboard";
 import OrdersList from "./components/adminDashboard/adminOrders/OrdersList";
 import UsersList from "./components/adminDashboard/viewAllUsers/UsersList";
 import AddProduct from "./components/adminDashboard/addProductForm/AddProduct";
 import ProductsList from "./components/adminDashboard/productRow/ProductsList";
-import Signup from "./components/Signup/Signup";
 import CreateAddress from "./components/CreateAddress/CreateAddress";
+
 import ThankYouPage from "./components/Thankyou/ThankYouPage";
+import Youtube from "./components/YoutubePlayer";
+import Youtube2 from "./components/YoutubePlayer/index1";
+import Youtube3 from "./components/YoutubePlayer/index2";
+
+
 
 function App() {
+
   return (
     <div className='app'>
       <div className='section'>
@@ -39,24 +54,37 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/login" element={<Login />} />
+
+            <Route path="/product" element={<ProductDashboard/>}>
+              <Route path="/product/item" element={<ViewProduct/>}/>
+            </Route>
             <Route exact path="/signup" element={ <Signup/>} />
-            <Route exact path="/createaddress" element={ <CreateAddress/>} />
+
+            <Route exact path="/v1" element={ <Youtube/>} />
+            <Route exact path="/v2" element={ <Youtube2/>} />
+            <Route exact path="/v3" element={ <Youtube3/>} />
+            <Route exact path="/blog" element={ <Layout />} >
+                <Route path="" element={<BlogPost/>} />
+                <Route  path=":id" element={<FullBlogPost/>} />
+            </Route >
+            <Route exact path="/createaddress/:uname" element={ <CreateAddress/>} />
             <Route path="/product" element={<ProductDashboard/>}/>
+
             <Route exact path="/userdashboard" element={<UserDashboard />}>
               <Route index element={<Dashboard />} />
               <Route path="/userdashboard/edit-user-info" element={<UserInfo/>}/>
               <Route path="/userdashboard/orders" element={<Orders/>}/>
               <Route path="/userdashboard/user-faves" element={<UserFaves/>}/>
               <Route path="/userdashboard/edit-user-pass" element={<UserPassword/>}/>
+              <Route path="/userdashboard/edit-user-address" element={<UserAddress/>}/>
             </Route>
             <Route exact path="/product" element={<ProductDashboard />}>
-              <Route index element={<AllProduct/>} />
+              <Route index element={<ShopApp/>} />
               <Route path="/product/nutrition" element={<Nutrition/>}/>
               <Route path="/product/training" element={<Training/>}/>
             </Route>
-            <Route></Route>
             <Route exact path="/search" element={<SearchProductFilter/>}/>
-            <Route exact path="/cart" element={<CartPage/>}/>
+            <Route exact path="/cart" element={<ShopApp/>}/>
             <Route exact path="/shop" element={<Shop/>}/>
             <Route
               exact
