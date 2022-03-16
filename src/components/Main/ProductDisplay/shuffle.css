@@ -90,6 +90,16 @@
   padding: 10px;
  }
 
+ .hp_product_image {
+  width: 80%;
+  height: 400px;
+  background-size: cover;
+  border-radius: 10px 10px 0 0;
+ }
+
+ .hp_product_item {
+   margin: 15px;
+ }
  /* .card-wrapper > div {
   flex-grow: 1;
   width: 33%;
