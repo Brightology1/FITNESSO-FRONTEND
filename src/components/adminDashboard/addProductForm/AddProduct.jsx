@@ -161,7 +161,7 @@ const AddProduct = () => {
               name="quantity"
               className="add-product-input"
               type="text"
-              placeholder="Quantity / Hours_PER_Day"
+              placeholder="Quantity / Trainers"
               value={quantity}
               onChange={(event) => setQuantity(event.target.value)}
             />
@@ -171,7 +171,7 @@ const AddProduct = () => {
               name="stock"
               className="add-product-input"
               type="text"
-              placeholder="Remaining Stock / Sessions_PER_Week"
+              placeholder="Remaining Stock"
               value={stock}
               onChange={(event) => setStock(event.target.value)}
             />
