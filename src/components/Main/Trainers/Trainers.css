@@ -1,0 +1,26 @@
+.trainers {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+.trainers_section {
+    display: flex;
+}
+
+.trainer_img {
+    height: 250px;
+    width: 250px;
+}
+
+.trainers_text {
+    display: flex;
+    justify-content: center;
+}
+
+.trainers_text > span {
+    height: 80px;
+    width: 500px;
+    font-size: xxx-large;
+    padding-left: 40px;
+}
