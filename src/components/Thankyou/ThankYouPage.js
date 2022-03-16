@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import './Thankyou.css'
 import Footer from "../Main/Footer/Footer";
 import Navbar from "../Main/Navbar/Navbar";
@@ -10,6 +10,7 @@ function ThankYouPage() {
   const [reference, setReference] = useState("");
   const queryParams = new URLSearchParams(window.location.search);
   const getReference = queryParams.get("reference");
+  console.log(getReference);
 
   const confirmPayment = async (takeReference) => {
     console.log(tokenCheck);
@@ -30,7 +31,7 @@ function ThankYouPage() {
     console.log(getReference);
     setReference(getReference);
     const res = confirmPayment(reference);
-    console.log(res.message);
+    console.log(res);
     console.log(res.status);
   }, [reference, getReference]);
 
