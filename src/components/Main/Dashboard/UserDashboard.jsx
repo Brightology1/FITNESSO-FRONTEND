@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, Link, Outlet } from "react-router-dom";
+import logOut from "../../Login/logout";
 import Footer from "../Footer/Footer";
 import Dashboard from "./Dashboard";
 import "./UserDashboard.css";
@@ -14,14 +15,6 @@ const UsersDashboard = () => {
   const toggleSidebar = () => {
     setSideBarResponsive(false);
   };
-
-  const logOut = (e) => {
-    e.preventDefault();
-    if (confirm("Log out?")) {
-      localStorage.clear()
-      window.location.replace(homeurl)
-    }
-  }
 
   return (
     <>

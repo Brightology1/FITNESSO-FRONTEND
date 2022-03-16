@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import fisherShuffle from "../ProductDisplay/Shuffler";
 import "./Trainers.css";
 
 const Trainers = () => {
@@ -13,16 +14,15 @@ const Trainers = () => {
 
   const getTrainers = async (e) => {
     const response = await axios.get(url);
-    console.log("This is response: " + response);
-    console.log("This is data: " + response.data);
-    setTrainers(response.data);
+    const newData = fisherShuffle(response.data).slice(0, 3);
+    setTrainers(newData);
     setIsLoading(true);
   };
   return (
     <div className="trainers">
       <div className="trainers_section">
         {trainers.map((item) => (
-          <div className="details" key={item._id}>
+          <div className="details" key={item.id}>
             <div className="big-img">
               <img src={item.trainer.image} alt="" />
             </div>
@@ -39,7 +39,7 @@ const Trainers = () => {
         ))}
       </div>
       <div className="trainers_text">
-        <span class="colour-free"> See Our Trainers</span>
+        <span className="colour-free"> See Our Trainers</span>
       </div>
     </div>
   );

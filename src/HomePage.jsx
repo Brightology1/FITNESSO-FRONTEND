@@ -9,6 +9,7 @@ import FixedImage from "./components/Main/FixedImage/FixedImage";
 import Slider from "./components/Main/Slider/Slider";
 import Youtube from "./components/YoutubePlayer"
 import Trainers from './components/Main/Trainers/Trainers';
+import ProductShuffler from './components/Main/ProductDisplay/ProductShuffler';
 
 
 const HomePage=()=>{
@@ -16,6 +17,7 @@ const HomePage=()=>{
       <>
         <Navbar />
         <Slider />
+        <ProductShuffler/>
         <Trainers/>
         <Product />
         <FixedImage />
