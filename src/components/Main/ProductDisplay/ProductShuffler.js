@@ -25,18 +25,19 @@ function ProductShuffler() {
   return (
     <div className="hp_product_card_wrapper">
       {products?.map((item) => (
-        <div key={item.id} className="hp_product_item">
-          <div className="view_products_wrapper">
-            <a className="search__container" href={`/product/item`}>
-              <span>
-                <img className="hp_product_image" src={item.image} />
-              </span>
-              <span className="prod_title">{item.productName}</span>
-              {/* <span className="search__description">{item.description}</span> */}
-              <span className="prod_price">₦ {item.price}</span>
-            </a>
-          </div>
-        </div>
+        <div key={item.id} className="search__box">
+              <div className="search_products_wrapper">
+                <a className="search__container" href={`/cart`}>
+                  <span className="search__image">
+                     <img src={item.image}/>
+
+                  </span>
+                  <span className="search__name">{item.productName}</span>
+                  {/* <span className="search__description">{item.description}</span> */}
+                  <span className="search__price">₦ {item.price}</span>
+                </a>
+              </div>
+              </div>
       ))}
     </div>
   );

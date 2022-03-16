@@ -44,7 +44,7 @@ function SearchProductFilter() {
             .map((item) => (
               <div key={item.id} className="search__box">
               <div className="search_products_wrapper">
-                <a className="search__container" href={`/product/item`}>
+                <a className="search__container" href={`/cart`}>
                   <span className="search__image">
                      <img src={item.image}/>
 

@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { FavoriteButton } from "../../services/FavoriteButton";
 import "./ViewProduct.css";
@@ -6,8 +7,9 @@ import "./ViewProduct.css";
 const ViewProduct = () => {
   const [product, setProduct] = useState({});
   const [productId, setProductId] = useState(0);
-  const [index, setIndex] = useState();;
-  const url = "http://localhost:9067/product/";
+  const [index, setIndex] = useState();
+  const token = localStorage.getItem("token");
+  const url = "https://fitnesso-app-new.herokuapp.com/product/";
 
   useEffect(() => {
     const id = localStorage.getItem("productId");
@@ -17,8 +19,10 @@ const ViewProduct = () => {
   });
 
   const getProductInfo = async (e) => {
-    const response = await fetch(`${url}${productId}`);
-    const data = await response.json();
+    const response = await axios.get(`${url}${productId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = response.data;
     setProduct(data);
   };
 
@@ -35,7 +39,7 @@ const ViewProduct = () => {
             <div className="box">
               <div className="row">
                 <h2>{product.productName}</h2>
-                <span>${product.price}</span>
+                <span>₦{product.price}</span>
               </div>
 
               <p>
@@ -57,7 +61,7 @@ const ViewProduct = () => {
             <div className="box">
               <div className="row">
                 <h2>{product.productName}</h2>
-                <span>${product.price}</span>
+                <span>₦{product.price}</span>
               </div>
 
               <p>

@@ -20,11 +20,14 @@ const Trainers = () => {
   };
   return (
     <div className="trainers">
+      <div className="trainers_text">
+        <span className="colour-free"> See Our Trainers</span>
+      </div>
       <div className="trainers_section">
         {trainers.map((item) => (
-          <div className="details" key={item.id}>
+          <div className="trainers_details" key={item.id}>
             <div className="big-img">
-              <img src={item.trainer.image} alt="" />
+              <img className='trainer_img' src={item.trainer.image} alt="" />
             </div>
 
             <div className="box">
@@ -37,9 +40,6 @@ const Trainers = () => {
             </div>
           </div>
         ))}
-      </div>
-      <div className="trainers_text">
-        <span className="colour-free"> See Our Trainers</span>
       </div>
     </div>
   );

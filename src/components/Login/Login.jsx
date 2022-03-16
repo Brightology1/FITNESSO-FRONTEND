@@ -32,6 +32,7 @@ const LoginUser = () => {
             localStorage.setItem("token", loginResponse.data.token);
             localStorage.setItem("role", loginResponse.data.role);
             localStorage.setItem("username", loginResponse.data.userInfo.userName);
+            localStorage.setItem("userInfo", JSON.stringify(loginResponse.data.userInfo));
 
             window.location.replace(homeurl)
 

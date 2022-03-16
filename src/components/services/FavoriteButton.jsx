@@ -21,7 +21,7 @@ function FavoriteButton(props) {
     return (
       <p className="text_small">
         <span>
-          <Link to="/login">Log in to favorite this recipe!</Link>
+          <Link to="/login">Log in to favorite this item!</Link>
         </span>
       </p>
     );

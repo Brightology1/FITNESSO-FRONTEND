@@ -23,7 +23,9 @@
     display: block;
     object-fit: cover;
   }
-  
+  .box {
+    padding: 15px;
+  }
   .details .box{
     max-width: 500px;
     min-width: 290px;
@@ -37,6 +39,7 @@
   .box .row h2{
     text-transform: uppercase;
     letter-spacing: 2px;
+    padding: 5px;
   }
   .box .row span{
     color: crimson;
@@ -52,6 +55,7 @@
   .box p{
     line-height: 1.5;
     margin: 15px 0;
+    padding: 5px;
   }
   .thumb{
     width: 100%;
