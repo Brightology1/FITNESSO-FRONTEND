@@ -1,23 +1,27 @@
 const data = [
     {
-        image: "https://images.unsplash.com/photo-1581009137042-c552e485697a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHdvcmtvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-        title: "Keep going",
-        description: "Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway."
+        image: "https://images.unsplash.com/photo-1610360339320-32bffde7711d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        title: "Our Products",
+        description: "Get you vitamin and mineral supplements, all you the micronutrients you need to keep your energy levels up and staying healthy.",
+        link: ""
     },
     {
-        image: "https://images.unsplash.com/photo-1627483298423-03e2e972431c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHdvcmtvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-        title: "Be Proud",
-        description: "Don't wait until you've reached your goal to be proud of yourself. Be proud of every step you take toward reaching that goal. "
+        image: "https://images.pexels.com/photos/4162451/pexels-photo-4162451.jpeg?cs=srgb&dl=pexels-ivan-samkov-4162451.jpg&fm=jpg",
+        title: "Our Products",
+        description: "We have a variety of gyming equipment and products for home workout. We have threadmills, dumbells, training suits and lots more.",
+        link: ""
     },
     {
-        image: "https://images.unsplash.com/photo-1631775237267-a865f351e5a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODF8fHdvcmtvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-        title: "Consider the possibilities.",
-        description: "When you're at the gym feeling like you'll never be one of those people who look like they've been at it their entire lives, remember that they all started somewhere."
+        image: "https://images.unsplash.com/photo-1529516548873-9ce57c8f155e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        title: "Our Services",
+        description: "You have body goals? Great! We have just the trainer for you. Choose from our list of professional trainers.",
+        link: ""
     },
     {
-        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTg3fHx3b3Jrb3V0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-        title: "Make fitness a habit.",
-        description: "Motivation is what gets you started. Habit is what keeps you going."
+        image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        title: "Our Services",
+        description: "Subcribe to our healthy lifestyle tips and get daily tailored diet plans to meet your health goals",
+        link: ""
     },
 ]
 
