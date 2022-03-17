@@ -4,18 +4,18 @@ import "./shuffle.css";
 import { Card } from "@mui/material";
 import fisherShuffle from "./Shuffler";
 
-function ProductShuffler() {
+function ServiceShuffler() {
   const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [services, setServices] = useState([]);
   useEffect(() => {
     const loadPosts = async () => {
       setLoading(true);
       const response = await axios.get(
-        "https://fitnesso-app-new.herokuapp.com/product/view_products_np"
+        "https://fitnesso-app-new.herokuapp.com/product/view_services_np"
       );
       //const response = await axios.get("http://localhost:9067/product/viewproducts");
       const newData = fisherShuffle(response.data).slice(0, 8);
-      setProducts(newData);
+      setServices(newData);
       console.log(response.data);
       setLoading(false);
     };
@@ -24,7 +24,7 @@ function ProductShuffler() {
 
   return (
     <div className="hp_product_card_wrapper">
-      {products?.map((item) => (
+      {services?.map((item) => (
         <div key={item.id} className="product__box">
               <div className="product_wrapper_container">
                 <a className="search__container" href={`/cart`}>
@@ -42,4 +42,4 @@ function ProductShuffler() {
   );
 }
 
-export default ProductShuffler;
+export default ServiceShuffler;
