@@ -45,13 +45,6 @@ const UserInfo = () => {
     <div>
       <form className="user-edit-form">
         <div className="user-edit-input-fields">
-          <input
-            type="text"
-            className="username"
-            align="center"
-            value={userInfo.userName}
-            disabled
-          />
 
           <input
             type="text"
@@ -78,16 +71,16 @@ const UserInfo = () => {
             onChange={(event) => setPhoneNumber(event.target.value)}
           />
         </div>
-        <div className="gender">
-          <select value={gender} onChange={(event) => setGender(event.target.value)}>
+        <div>
+          <select value={gender} className="username" onChange={(event) => setGender(event.target.value)}>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Prefer not to say">Rather not say</option>
           </select>
 
-          <div className="firstName">
+          <div className="username">
               <i class="fas fa-calendar"></i>
-              <input className="date" placeholder="Enter BirthDay" type="date" value={dateOfBirth} pattern=" enter BirthDay \d{4}-\d{2}-\d{2}" onChange={(event) => setDateOfBirth(event.target.value)}/>
+              <input className="username" placeholder="Enter BirthDay" type="date" value={dateOfBirth} pattern=" enter BirthDay \d{4}-\d{2}-\d{2}" onChange={(event) => setDateOfBirth(event.target.value)}/>
             </div>
 
         </div>
@@ -101,10 +94,7 @@ const UserInfo = () => {
           >
             Edit Info
           </button>
-
-          <p className="forgot" align="center">
-            <a href="#">Edit Password?</a>{" "}
-          </p>
+          <br></br>
           <br></br>
           <p className="cancel" align="center">
             <a href="/userdashboard">Cancel</a>{" "}
