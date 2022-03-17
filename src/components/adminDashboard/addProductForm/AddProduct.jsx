@@ -51,8 +51,8 @@ const AddProduct = () => {
 
     console.log(reqBody)
 
-    // const url = 'https://fitnesso-app-new.herokuapp.com/product/add';
-   const url = "http://localhost:9067/product/add";
+    const url = 'https://fitnesso-app-new.herokuapp.com/product/add';
+  //  const url = "http://localhost:9067/product/add";
   
     try {
         const token = localStorage.getItem("token");

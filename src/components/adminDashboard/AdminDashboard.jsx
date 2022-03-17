@@ -73,6 +73,10 @@ const AdminDashboard = () => {
             </li>
             <li>
               <i className="fas fa-edit"></i>
+              <a href="/admindashboard/add-trainer">Add Trainer </a>
+            </li>
+            <li>
+              <i className="fas fa-edit"></i>
               <a href="/admindashboard/add-services">Add Post </a>
             </li>
             <li>
@@ -134,7 +138,7 @@ const AdminDashboard = () => {
               </div>
             </div>
             <div className="admin-dashboard-val-box">
-              <i className="fas fa-acorn"></i>
+            <i className="fa-solid fa-dumbbell"></i>
               <div>
                 <h3>{services}</h3>
                 <span>Services</span>
