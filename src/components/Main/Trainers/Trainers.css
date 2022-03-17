@@ -20,6 +20,7 @@
 .trainers_text {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .trainers_text > span {

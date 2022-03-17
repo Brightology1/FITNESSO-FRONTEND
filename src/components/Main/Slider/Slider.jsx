@@ -33,6 +33,7 @@ const Slider = () => {
     useEffect(() => {
         setCurrentSLide(0)
     }, [])
+    
 
     useEffect(() => {
         if(autoScrollState) {
@@ -40,6 +41,7 @@ const Slider = () => {
         }
         return () => clearInterval(slideInterval)
     }, [currentSlide])
+    console.log(localStorage.getItem("token"));
 
 
   return (
