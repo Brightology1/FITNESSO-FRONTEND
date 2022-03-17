@@ -19,7 +19,7 @@ const Dashboard = () => {
   const getUserInfo = async (e) => {
     setSuccessful(true);
 
-     const url = "'https://fitnesso-app-new.herokuapp.com/person/profile";
+   const url = "https://fitnesso-app-new.herokuapp.com/person/profile";
     //const url = `http://localhost:9067/person/profile`;
 
     try {

@@ -41,7 +41,10 @@ const Slider = () => {
         }
         return () => clearInterval(slideInterval)
     }, [currentSlide])
-    console.log(localStorage.getItem("token"));
+
+   const datum = localStorage.getItem("peopledata");
+
+   console.log(datum);
 
 
   return (

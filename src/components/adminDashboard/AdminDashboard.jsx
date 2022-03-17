@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   }, []);
 
   const getStats = async (e) => {
-      const url = `http://localhost:9067/person/admin/stats`;
+      const url = `https://fitnesso-app-new.herokuapp.com/person/admin/stats`;
 
       try {
           const response = await axios.get(url, {
