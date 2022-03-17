@@ -8,7 +8,7 @@ export const CategoryItem = [
 
     {
         title: "PRODUCTS",
-        url: "/product/nutrition",
+        url: "/product/view_products_np",
         className: "cat-nav-links"
     },
 

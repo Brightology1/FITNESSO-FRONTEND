@@ -21,8 +21,8 @@ import SearchProductFilter from "./components/search/SearchProductFilter";
 import Contact from "./components/Contact/pages/Contact.jsx"
 import Navbar from "./components/Main/Navbar/Navbar"
 import Footer from "./components/Main/Footer/Footer";
-import Nutrition from "./components/Main/ProductCategory/Nutrition";
-import Training from "./components/Main/ProductCategory/Training";
+import Products from "./components/Main/ProductCategory/Products";
+import Services from "./components/Main/ProductCategory/Services";
 
 import ViewProduct from "./components/Main/ProductCategory/ViewProduct";
 import UserAddress from "./components/Main/Dashboard/EditForms/UserAddress";
@@ -81,8 +81,8 @@ function App() {
             </Route>
             <Route exact path="/product" element={<ProductDashboard />}>
               <Route index element={<ShopApp/>} />
-              <Route path="/product/nutrition" element={<Nutrition/>}/>
-              <Route path="/product/training" element={<Training/>}/>
+              <Route path="product/products" element={<Products/>}/>
+              <Route path="product/services" element={<Services/>}/>
             </Route>
             <Route exact path="/search" element={<SearchProductFilter/>}/>
             <Route exact path="/cart" element={<ShopApp/>}/>
