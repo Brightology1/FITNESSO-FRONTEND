@@ -137,3 +137,15 @@
 }
 }
 
+@media (max-width:440px){
+  .hp_product_card_wrapper {
+      grid-template-columns: 1fr 1fr;
+      padding: 10px;
+  }
+
+  .product__box{
+    width:80%;
+    margin: 5px;
+  }
+}
+
