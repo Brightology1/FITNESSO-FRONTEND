@@ -28,7 +28,7 @@ export const Wrapper = styled.div`
      margin-bottom: 7px;
  }
 
- .prod_desc {
+ .prod_desc, .prod_title {
    text-transform: lowercase;
    line-height: 1.5em;
    height: 3em;       /* height is 2x line-height, so two lines will display */
