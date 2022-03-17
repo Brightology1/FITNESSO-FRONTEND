@@ -26,6 +26,7 @@ const LoginUser = () => {
 
         try {
             const loginResponse = await axios.post(url, reqBody);
+            localStorage.clear();
             localStorage.removeItem("token")
             // console.log((loginResponse.data));
             localStorage.setItem(

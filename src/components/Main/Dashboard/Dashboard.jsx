@@ -6,7 +6,7 @@ import { useState } from "react";
 import useFetch from "./useFetch";
 
 const Dashboard = () => {
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJBdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiYmxvZzpyZWFkIn0seyJhdXRob3JpdHkiOiJ0cmFpbmluZzpyZWFkIn0seyJhdXRob3JpdHkiOiJ1c2VyOnJlYWQifSx7ImF1dGhvcml0eSI6InByb2R1Y3Q6cmVhZCJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9QUkVNSVVNIn1dLCJzdWIiOiJ2bGFkcjI4IiwiaWF0IjoxNjQ3NDg4MzQ4LCJleHAiOjE2NDc1MjQzNDh9.1D8h-21xCnhEJv6ZKl8_g_JMQE-kmBK7l50iKGMioEg";
+  const token = localStorage.getItem("token");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [peopledata, setPeopleData] = useState({});
   const [successful, setSuccessful] = useState(false);
@@ -37,7 +37,7 @@ const Dashboard = () => {
       setIsLoggedIn(true);
     } catch (e) {
       // localStorage.clear();
-      navigate("/");
+      // navigate("/");
       console.log("User does not exist!");
     }
   };
