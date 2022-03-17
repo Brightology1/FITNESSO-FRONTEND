@@ -75,10 +75,10 @@ const AdminDashboard = () => {
               <i className="fas fa-edit"></i>
               <a href="/admindashboard/add-trainer">Add Trainer </a>
             </li>
-            <li>
+            {/* <li>
               <i className="fas fa-edit"></i>
               <a href="/admindashboard/add-services">Add Post </a>
-            </li>
+            </li> */}
             <li>
               <i className="fa fa-user"></i>
               <a href="/userdashboard">My Details</a>
