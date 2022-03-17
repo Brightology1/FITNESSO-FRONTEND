@@ -17,30 +17,32 @@
   /* margin:70px 0px 0 70px; */
 }
 
-.search_products_wrapper{
+.product_wrapper_container{
   border-radius: 5px;
   margin: 5px;
-  width: 186px;
+  width: 200px;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
   rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
   rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
   height: 250px;
   overflow: hidden;
+  
 }
-.search__box{
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, max(40px, 1fr));
-  background-color: white;
+.product__box{
+  display: flex;
+  justify-content: center;
 
 }
-.search__name, .search__description, .search__price{
+.product__title, .product__category, .product__price{
   font-size: 14px;
   margin: 5px;
 }
 
-.search__box:hover{
-  box-shadow: rgba(117, 117, 126, 0.2) 0px 7px 29px 0px;
+.product__category{
+  color: black;
+}
+
+.product__box:hover{
   transition:all 0.5s ease-in-out;
   transform:scale(0.9);
 }
@@ -61,31 +63,71 @@
   position: absolute;
 }
 
-.search__image{
+.product_image{
   width: 100%;
 }
-.search__image img{
+.product__image img{
   width:100%;
   height:150px;
   /* margin:auto; */
   /* max-width: 200px; */
 }
 
-.search__price{
+.product__price{
   /* background:blue; */
   color: #50BABA;
 }
-.search__container{
+.product__container{
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color:grey;
   font-weight: 100;
   font-family: Verdana;
-  align-items: center;
 }
+
+ .hp_product_card_wrapper {
+  display: flex;
+  justify-content: space-between;
+  
+  
+  padding: 40px;
+ }
+
+ .hp_product_image {
+  width: 80%;
+  height: 90%;
+  background-size: cover;
+  border-radius: 10px;
+ }
+
+ .hp_product_item {
+   margin: 15px;
+ }
+ /* .card-wrapper > div {
+  flex-grow: 1;
+  width: 33%;
+  height: 100px;
+ } */
+
+ .view_products_wrapper {
+   padding: 20px;
+   display: flex;
+   justify-content: center;
+ }
+
+ .item_container {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: grey;
+  font-weight: 100;
+  font-family: Verdana;
+  align-items: center;
+ }
+
 @media screen and (max-width:960px){
-  .search__box{
+  .product__box{
   width:25%;
 }
 .search__input{
@@ -93,11 +135,23 @@
 }
 }
 @media screen and (max-width:676px){
-  .search__box{
+  .product__box{
   width:50%;
 }
 .search__input{
   width:90%;
 }
+}
+
+@media (max-width:440px){
+  .hp_product_card_wrapper {
+      grid-template-columns: 1fr 1fr;
+      padding: 10px;
+  }
+
+  .product__box{
+    width:80%;
+    margin: 5px;
+  }
 }
 

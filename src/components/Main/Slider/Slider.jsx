@@ -3,6 +3,8 @@ import {useState, useEffect} from 'react'
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 import "./slider.css"
 import data from "./Data"
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
 
 const Slider = () => {
     const [currentSlide, setCurrentSLide] = useState(0)
@@ -31,6 +33,7 @@ const Slider = () => {
     useEffect(() => {
         setCurrentSLide(0)
     }, [])
+    
 
     useEffect(() => {
         if(autoScrollState) {
@@ -38,6 +41,10 @@ const Slider = () => {
         }
         return () => clearInterval(slideInterval)
     }, [currentSlide])
+
+   const datum = localStorage.getItem("peopledata");
+
+   console.log(datum);
 
 
   return (
@@ -50,10 +57,10 @@ const Slider = () => {
                 <div className={index === currentSlide ? "slide current" : "slide"} key={index}>
                     {index === currentSlide && (
                         <>
-                        <img src={slide.image} alt="slide"/>
+                        <img src={slide.image} alt="slide" />
                         <div className="content">
-                            <h2>{slide.title}</h2>
-                            <p>{slide.description}</p>
+                        <a style={{display:'flex',alignItems:'center',fontWeight:'lighter', fontSize:'25px'}} href="">{slide.title}</a>
+                            <p style={{display:'flex',alignItems:'space-between',fontSize:'20px'}}>{slide.description}</p>
                         </div>
                         </>
                     )}

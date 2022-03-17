@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import ProductModel from "../../shop/shopProduct/ProductModel";
 
-const Nutrition = () => {
+const Products = () => {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoaing] = useState(false);
     const [offset, setOffset] = useState(0);
@@ -14,7 +14,9 @@ const Nutrition = () => {
 
 
     // TODO: Edit Url to be dynamic
-    const serviceUrl = "https://fitnesso-app-new.herokuapp.com/product/allproducts/10/0"
+   // const serviceUrl = "https://fitnesso-app-new.herokuapp.com/product/allproducts/10/0"
+    const serviceUrl = "https://http://localhost:9067/product/view_services_np"
+
   
     useEffect(() => {
       const fetchData = async () => {
@@ -77,4 +79,4 @@ const Nutrition = () => {
     </div>
   );
 }
-export default Nutrition;
+export default Products;

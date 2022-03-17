@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   }, []);
 
   const getStats = async (e) => {
-      const url = `http://localhost:9067/person/admin/stats`;
+      const url = `https://fitnesso-app-new.herokuapp.com/person/admin/stats`;
 
       try {
           const response = await axios.get(url, {
@@ -59,30 +59,34 @@ const AdminDashboard = () => {
               <i className="fad fa-chart-pie-alt"></i>
               <a href="/">{" Back to Home"}</a>
             </li>
-            <li>
+            {/* <li>
               <i className="fab fa-uikit"></i>
               <a href="/admindashboard">Orders</a>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <i className="fas fa-users"></i>
               <a href="/admindashboard/view-users">Users</a>
-            </li>
+            </li> */}
             <li>
               <i className="fas fa-edit"></i>
               <a href="/admindashboard/add-products">Add Product </a>
             </li>
             <li>
               <i className="fas fa-edit"></i>
-              <a href="/admindashboard/add-services">Add Post </a>
+              <a href="/admindashboard/add-trainer">Add Trainer </a>
             </li>
+            {/* <li>
+              <i className="fas fa-edit"></i>
+              <a href="/admindashboard/add-services">Add Post </a>
+            </li> */}
             <li>
               <i className="fa fa-user"></i>
               <a href="/userdashboard">My Details</a>
             </li>
-            <li>
+            {/* <li>
               <i className="fas fa-dumbbell"></i>
               <a href="/admindashboard/view-products">Product</a>
-            </li>
+            </li> */}
             <li>
               <i className="fas fa-power-off"></i>
               <a href="#" onClick={logOut}>
@@ -134,7 +138,7 @@ const AdminDashboard = () => {
               </div>
             </div>
             <div className="admin-dashboard-val-box">
-              <i className="fas fa-acorn"></i>
+            <i className="fa-solid fa-dumbbell"></i>
               <div>
                 <h3>{services}</h3>
                 <span>Services</span>

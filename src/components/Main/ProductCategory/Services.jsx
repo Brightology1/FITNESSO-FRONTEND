@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import ProductModel from "../../shop/shopProduct/ProductModel";
 
-const Training = () => {
+const Services = () => {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoaing] = useState(false);
     const [offset, setOffset] = useState(0);
@@ -77,4 +77,4 @@ const Training = () => {
     </div>
   );
 }
-export default Training;
+export default Services;

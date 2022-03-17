@@ -11,12 +11,7 @@ const Youtube2 = () => {
         src="https://www.youtube.com/embed/dJlFmxiL11s"
         frameborder="0"> 
         </iframe>
-        <div className="close d-flex justify-content-center">
-            <i className="fas fa-times"></i>
-        </div>
-        <div className="handle d-flex justify-content-center">
-            <i className="fas fa-arrows-alt "></i>
-        </div>
+       
     </div>
   )
 }

@@ -26,12 +26,19 @@ const LoginUser = () => {
 
         try {
             const loginResponse = await axios.post(url, reqBody);
+            localStorage.clear();
             localStorage.removeItem("token")
             // console.log((loginResponse.data));
+            localStorage.setItem(
+                "personData",
+                JSON.stringify(loginResponse.data.userInfo)
+              );
+              localStorage.getItem("personData")
 
             localStorage.setItem("token", loginResponse.data.token);
             localStorage.setItem("role", loginResponse.data.role);
             localStorage.setItem("username", loginResponse.data.userInfo.userName);
+            //localStorage.setItem("userinfo", loginResponse.data.userInfo.json().stringify());
 
             window.location.replace(homeurl)
 
