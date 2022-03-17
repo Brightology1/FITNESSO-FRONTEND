@@ -59,14 +59,14 @@ const AdminDashboard = () => {
               <i className="fad fa-chart-pie-alt"></i>
               <a href="/">{" Back to Home"}</a>
             </li>
-            <li>
+            {/* <li>
               <i className="fab fa-uikit"></i>
               <a href="/admindashboard">Orders</a>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <i className="fas fa-users"></i>
               <a href="/admindashboard/view-users">Users</a>
-            </li>
+            </li> */}
             <li>
               <i className="fas fa-edit"></i>
               <a href="/admindashboard/add-products">Add Product </a>
@@ -83,10 +83,10 @@ const AdminDashboard = () => {
               <i className="fa fa-user"></i>
               <a href="/userdashboard">My Details</a>
             </li>
-            <li>
+            {/* <li>
               <i className="fas fa-dumbbell"></i>
               <a href="/admindashboard/view-products">Product</a>
-            </li>
+            </li> */}
             <li>
               <i className="fas fa-power-off"></i>
               <a href="#" onClick={logOut}>
