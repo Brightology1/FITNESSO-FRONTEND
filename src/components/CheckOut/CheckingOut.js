@@ -19,54 +19,66 @@ import ItemsOrder from "./ItemsOrder";
 import OrderSummary from "./OrderSummary";
 import OrderConfirmation from "./orderStuff/OrderConfirmation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight, faMoneyBillWave } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleRight,
+  faMoneyBillWave,
+} from "@fortawesome/free-solid-svg-icons";
 import CartContext from "../../context/cart-context";
 
 function CheckingOut() {
   const loginState = localStorage.getItem("token");
-    const navigate = useNavigate();
-    const cartCxt = useContext(CartContext);
+  const userInfo = JSON.parse(localStorage.getItem("peopleData"));
+  const userAdd = userInfo.address;
+  const navigate = useNavigate();
+  const cartCxt = useContext(CartContext);
+  console.log(userAdd);
+  console.log(userInfo);
 
   useEffect(() => {
-    if(loginState === null){
+    if (loginState === null) {
       navigate("/");
       alert("Please Login");
-    }
-    else if(cartCxt.items.length === 0){
+    } else if (cartCxt.items.length === 0) {
       alert("Cart Items is empty");
       navigate("/cart");
     }
-  }, [])
-  const [customerInfo, setCustomerInfo] = useState({ email: "" });
+  }, []);
+  const [customerInfo, setCustomerInfo] = useState({ email: userInfo.email });
   const [discount, setDiscount] = useState({});
   const [shipMethod, setShipMethod] = useState({});
   const [cardInfo, setCardInfo] = useState({});
-  const [shipping, setShipping] = useState({});
-  const [billing, setBilling] = useState({});
+  const [shipping, setShipping] = useState(userAdd);
+  const [billing, setBilling] = useState(userAdd);
   const [issuer, setIssuer] = useState("");
   const API_BASE_URL = "https://fitnesso-app-new.herokuapp.com";
 
-  const itemsPrice = cartCxt.items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+  const itemsPrice = cartCxt.items.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0
+  );
   const totalPrice = itemsPrice + 50;
   const [allData, setAllData] = useState({});
 
   const summaryOrder = {
     subTotal: itemsPrice,
     flatRate: 50,
-    total: totalPrice
-  }
+    total: totalPrice,
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    if(customerInfo.email === '' || Object.keys(cardInfo).length < 3
-    || Object.keys(shipping).length < 6
-    || Object.keys(billing).length < 6
-    || Object.keys(shipMethod).length === 0){
-        alert("Please enter all required information");
-        return;
+    if (
+      customerInfo.email === "" ||
+      Object.keys(cardInfo).length < 3 ||
+      Object.keys(shipping).length < 6 ||
+      Object.keys(billing).length < 6 ||
+      Object.keys(shipMethod).length === 0
+    ) {
+      alert("Please enter all required information");
+      return;
     }
-    allData.email= customerInfo.email;
+    allData.email = customerInfo.email;
     allData.shippingAddress = shipping;
     allData.shippingMethod = shipMethod.shipWay;
     allData.paymentRequest = cardInfo;
@@ -80,40 +92,45 @@ function CheckingOut() {
 
   const checkOutRequest = async (makeCheckOut) => {
     console.log(makeCheckOut);
-    const res = await fetch(`${API_BASE_URL}/checkout`,{
-        method: "POST",
-        mode: 'cors',
-        headers: {
-            "Authorization": 'Bearer ' + localStorage.getItem("token"),
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(makeCheckOut),
-      });
+    const res = await fetch(`${API_BASE_URL}/checkout`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(makeCheckOut),
+    });
     const data = await res.json();
     console.log(res);
     console.log(data);
-    if(data.message === "Complete your Payment") {
+    if (data.message === "Complete your Payment") {
       window.location.href = data.link;
-    }
-    else if(data.status === 403){
-        navigate("/login")
+    } else if (data.status === 403) {
+      navigate("/login");
     }
   };
 
   const handleRequest = () => {
     console.log(allData);
     checkOutRequest(allData);
-  }
+  };
 
   return (
     <div>
-      <NavBar/>
-    <div className="CheckingOut-row">
-      <div className="CheckingOut-left-container">
+      <NavBar />
+      <div className="CheckingOut-row">
+        <div className="CheckingOut-left-container">
           <Routes>
             <Route
               path="order-confirmation"
-              element={customerInfo.email === '' ? <Navigate to="/checkout" /> : <OrderConfirmation allData={allData} issuer={issuer} />}
+              element={
+                customerInfo.email === "" ? (
+                  <Navigate to="/checkout" />
+                ) : (
+                  <OrderConfirmation allData={allData} issuer={issuer} />
+                )
+              }
             />
             <Route
               path="/"
@@ -129,7 +146,12 @@ function CheckingOut() {
                     addressName={"Shipping Address"}
                   />
                   <ShippingMethod setShipMethod={setShipMethod} />
-                  <PaymentInfo setCardInfo={setCardInfo} cardInfo={cardInfo} setIssuer={setIssuer} issuer={issuer} />
+                  <PaymentInfo
+                    setCardInfo={setCardInfo}
+                    cardInfo={cardInfo}
+                    setIssuer={setIssuer}
+                    issuer={issuer}
+                  />
                   <BillingAddress
                     shipping={billing}
                     setShipping={setBilling}
@@ -143,35 +165,40 @@ function CheckingOut() {
               }
             />
           </Routes>
-      </div>
-      <div className="CheckingOut-right-container">
-        <div className="CheckingOut-right-order">
-          <ItemsOrder />
         </div>
-        <OrderSummary summaryOrder={summaryOrder} />
-        <Routes>
-        <Route
+        <div className="CheckingOut-right-container">
+          <div className="CheckingOut-right-order">
+            <ItemsOrder />
+          </div>
+          <OrderSummary summaryOrder={summaryOrder} />
+          <Routes>
+            <Route
               path="order-confirmation"
               element={
                 <div className="CheckingOut-place-pay-now">
-                <button onClick={handleRequest}><FontAwesomeIcon icon={faMoneyBillWave} /> PAY NOW</button>
-                </div>}
+                  <button onClick={handleRequest}>
+                    <FontAwesomeIcon icon={faMoneyBillWave} /> PAY NOW
+                  </button>
+                </div>
+              }
             />
             <Route
               path="/"
-              element={<button
-                type="button"
-                onClick={handleSubmit}
-                className="CheckingOut-place-second-slide"
-              >
-                <div>PLACE ORDER</div>
-                <FontAwesomeIcon icon={faAngleRight} />
-              </button>}
+              element={
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  className="CheckingOut-place-second-slide"
+                >
+                  <div>PLACE ORDER</div>
+                  <FontAwesomeIcon icon={faAngleRight} />
+                </button>
+              }
             />
-        </Routes>
+          </Routes>
+        </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </div>
   );
 }
