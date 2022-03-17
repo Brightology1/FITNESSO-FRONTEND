@@ -37,7 +37,7 @@ const Dashboard = () => {
       setIsLoggedIn(true);
     } catch (e) {
       // localStorage.clear();
-      // navigate("/");
+      navigate("/");
       console.log("User does not exist!");
     }
   };
